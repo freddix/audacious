@@ -1,11 +1,11 @@
 Summary:	Media player based on BMP
 Name:		audacious
-Version:	3.4.1
-Release:	1
+Version:	3.4.2
+Release:	2
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://distfiles.audacious-media-player.org/%{name}-%{version}.tar.bz2
-# Source0-md5:	f7f00c2b7d50f2da42be457efe2c376d
+# Source0-md5:	b5ee7a825b1cc1a5348875e6274cfc4e
 URL:		http://audacious-media-player.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -14,8 +14,8 @@ BuildRequires:	gtk+3-devel
 #BuildRequires:	libguess-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	pkg-config
+Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	audacious-plugins
@@ -43,7 +43,7 @@ Header files required for compiling Audacious media player plugins.
 %prep
 %setup -qn %{name}-%{version}
 
-sed -i -e 's/gthread-2.0/gthread-2.0 gmodule-2.0/' configure.ac
+%{__sed} -i -e 's/gthread-2.0/gthread-2.0 gmodule-2.0/' configure.ac
 
 %build
 %{__aclocal} -I m4
@@ -64,9 +64,10 @@ install pixmaps/%{name}.png \
 install pixmaps/%{name}.svg \
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable/apps/audacious.svg
 
-mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
 mv $RPM_BUILD_ROOT%{_localedir}/fa{_IR,}
 mv $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
+mv $RPM_BUILD_ROOT%{_localedir}/ml{_IN,}
+mv $RPM_BUILD_ROOT%{_localedir}/pt{_PT,}
 
 %find_lang %{name}
 
@@ -74,11 +75,11 @@ mv $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%update_desktop_database_post
+%update_desktop_database
 %update_icon_cache hicolor
 
 %postun
-%update_desktop_database_postun
+%update_desktop_database
 %update_icon_cache hicolor
 
 %post	libs -p /usr/sbin/ldconfig
