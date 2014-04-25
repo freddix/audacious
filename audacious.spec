@@ -1,11 +1,11 @@
 Summary:	Media player based on BMP
 Name:		audacious
-Version:	3.4.3
-Release:	1
+Version:	3.5
+Release:	2
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://distfiles.audacious-media-player.org/%{name}-%{version}.tar.bz2
-# Source0-md5:	3935e3c1e6bdc2907ce2672a85476f20
+# Source0-md5:	1d0842d6c2aa3d598b3e26e1994be757
 URL:		http://audacious-media-player.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -68,7 +68,7 @@ mv $RPM_BUILD_ROOT%{_localedir}/fa{_IR,}
 mv $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
 mv $RPM_BUILD_ROOT%{_localedir}/ml{_IN,}
 mv $RPM_BUILD_ROOT%{_localedir}/pt{_PT,}
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{cmn,sr_RS}
 
 %find_lang %{name}
 
@@ -111,18 +111,15 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %dir %{_libdir}/audacious
-%attr(755,root,root) %ghost %{_libdir}/libaudclient.so.?
 %attr(755,root,root) %ghost %{_libdir}/libaudcore.so.?
 %attr(755,root,root) %ghost %{_libdir}/libaudgui.so.?
 %attr(755,root,root) %ghost %{_libdir}/libaudtag.so.?
-%attr(755,root,root) %{_libdir}/libaudclient.so.*.*.*
 %attr(755,root,root) %{_libdir}/libaudcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/libaudtag.so.*.*.*
 %attr(755,root,root) %{_libdir}/libaudgui.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libaudclient.so
 %attr(755,root,root) %{_libdir}/libaudcore.so
 %attr(755,root,root) %{_libdir}/libaudgui.so
 %attr(755,root,root) %{_libdir}/libaudtag.so
@@ -130,5 +127,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/libaudcore
 %{_includedir}/libaudgui
 %{_pkgconfigdir}/audacious.pc
-%{_pkgconfigdir}/audclient.pc
 
