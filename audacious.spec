@@ -1,11 +1,11 @@
 Summary:	Media player based on BMP
 Name:		audacious
-Version:	3.5.2
+Version:	3.6
 Release:	1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	http://distfiles.audacious-media-player.org/%{name}-%{version}.tar.bz2
-# Source0-md5:	8705fa8ac872e7d9f4b4ad867a0d1937
+# Source0-md5:	bdc1eb06c39cf84247a2b75920c9f9a0
 URL:		http://audacious-media-player.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,11 +58,6 @@ install -d $RPM_BUILD_ROOT%{_libdir}/audacious/{Container,Effect,General,Input,O
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install pixmaps/%{name}.png \
-	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/apps/audacious.png
-install pixmaps/%{name}.svg \
-	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable/apps/audacious.svg
 
 mv $RPM_BUILD_ROOT%{_localedir}/fa{_IR,}
 mv $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
